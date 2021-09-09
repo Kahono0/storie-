@@ -17,7 +17,7 @@ class credentials:
 		self.username = username
 		self.password = password
 	def save(self):
-		f = open("acc.txt","a")
+		f = open(usr+".txt","a")
 		f.write(self.account+"\n")
 		f.write(self.username+"\n")
 		f.write(self.password+"\n")
@@ -65,7 +65,7 @@ def login(a):
 	with open("cr.json","r") as f:
 		data = f.read()
 		data = json.loads(data)
-	user_data = user(data)
+	user_data = user(data,username)
 	if username == user_data.user():
 		if password == user_data.password():
 			print("Login successful.\n\tWelcome..")
