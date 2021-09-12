@@ -19,7 +19,7 @@ class credentials:
         self.usr = usr
     
     def save(self):
-        f=open(self.usr+".text","a")
+        f=open(self.usr+".txt","a")
         f.write(self.account+ "\n")
         f.write(self.username + "\n")
         f.write(self.password + "\n")
@@ -107,11 +107,11 @@ def choose(a,usr):
     x = int(input("What do you want to do:\n\t1. Add an existing account. \n\t2. Create a new account.\n\t3. Delete an account.\n\42.View your accounts.\n>>> "))
     print(x)
     if x == 1:
-        add(usr)
+        add(usrname)
     elif x == 2:
-        create(usr)
+        create(usrname)
     elif x == 3:
-        delete(usr)
+        delete(usrname)
     elif x == 4:
         view(usr)
         choose("",usrname)
@@ -122,7 +122,7 @@ def add(usr):
     account = input("Enter the name of the account.(ie, Facebook,twitter,email)\n>>")
     username =input("Enter your username.\n>>")
     password = input("Enter your password.\n>>")
-    details = credentials(account,username,password,usr)
+    details = credentials(account,username,password,usrname)
     details.save()
     choose("",usrname)
 
@@ -148,7 +148,7 @@ def create(usr):
     choose("",usrname)
 
 def make_arr(usr):
-    f = open(usr+".text", "r")
+    f = open(usr+".txt", "r")
     arr = []
     small = []
     x = f.readlines()
@@ -160,8 +160,9 @@ def make_arr(usr):
         arr.append(small)
         small = []
         i += 3
+        print(i)
         f.close()
-        return arr
+    return arr
 
 def view(usr):
 	
@@ -181,7 +182,7 @@ def delete(usr):
     no = int(input(">>>"))
     arr = make_arr(usrname)
     if no <= len(arr):
-        f = open(usr+".txt","w")
+        f = open(usrname+".txt","w")
         arr[no-1] = ""
         arr.remove("")
         print(arr)
